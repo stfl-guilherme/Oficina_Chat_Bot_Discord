@@ -1,0 +1,6 @@
+# Suas chaves secretas: nunca sobem para o GitHub
+.env
+# Ambiente virtual: cada um cria o seu com "python -m venv .venv"
+.venv/
+# Arquivos compilados que o Python gera sozinho
+__pycache__/
