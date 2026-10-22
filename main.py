@@ -17,7 +17,13 @@ COOLDOWN_SEGUNDOS = 5
 LIMITE_DISCORD = 2000  # tamanho máximo de uma mensagem no Discord
 
 # Personalidade: diz para a IA como ela deve se comportar
-PERSONALIDADE = "Você é um assistente útil. Responda em português, de forma curta."
+PERSONALIDADE = (
+    "Você é um professor direto. Responda em português, em no máximo 3 frases, "
+    "sem enrolação. Se a pergunta for vaga, peça mais detalhes."
+)
+# PERSONALIDADE = "Você é um pirata. Responda em português, de forma curta, sempre falando como um pirata (Arrr, marujo!)."
+# PERSONALIDADE = "Você é um monitor que só responde com perguntas, para o aluno chegar sozinho na resposta. Fale em português."
+# Sua vez: edite, salve, reinicie o bot (Ctrl+C e rode de novo) e teste.
 
 intents = discord.Intents.default()
 intents.message_content = True  # deixa o bot ler o texto das mensagens
