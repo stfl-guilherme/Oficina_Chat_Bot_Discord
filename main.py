@@ -1,6 +1,7 @@
 import os
 import re
 import time
+from pathlib import Path
 
 import discord
 from dotenv import load_dotenv
@@ -24,6 +25,16 @@ PERSONALIDADE = (
 # PERSONALIDADE = "Você é um pirata. Responda em português, de forma curta, sempre falando como um pirata (Arrr, marujo!)."
 # PERSONALIDADE = "Você é um monitor que só responde com perguntas, para o aluno chegar sozinho na resposta. Fale em português."
 # Sua vez: edite, salve, reinicie o bot (Ctrl+C e rode de novo) e teste.
+
+# RAG: o documento vai junto com a instrução, antes de qualquer pergunta
+# Path(__file__).parent é a pasta deste arquivo: funciona mesmo rodando de outra pasta
+with open(Path(__file__).parent / "minecraft.md", encoding="utf-8") as arquivo:
+    documento = arquivo.read()
+INSTRUCAO = (
+    PERSONALIDADE
+    + " Responda só com base no documento abaixo. Se não estiver nele, diga que não sabe.\n\n"
+    + documento
+)
 
 intents = discord.Intents.default()
 intents.message_content = True  # deixa o bot ler o texto das mensagens
@@ -62,7 +73,7 @@ async def on_message(msg):
     if msg.channel.id not in chats:
         chats[msg.channel.id] = ia.aio.chats.create(
             model=MODELO,
-            config=types.GenerateContentConfig(system_instruction=PERSONALIDADE),
+            config=types.GenerateContentConfig(system_instruction=INSTRUCAO),
         )
 
     try:
