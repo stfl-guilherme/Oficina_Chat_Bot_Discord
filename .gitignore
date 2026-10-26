@@ -4,3 +4,8 @@
 .venv/
 # Arquivos compilados que o Python gera sozinho
 __pycache__/
+# Arquivos que o macOS cria sozinho nas pastas
+.DS_Store
+# Configurações pessoais dos editores (PyCharm e VS Code)
+.idea/
+.vscode/

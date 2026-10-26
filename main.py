@@ -53,6 +53,7 @@ async def on_ready():
 
 @bot.event
 async def on_message(msg):
+    """Responde quando o bot é mencionado: filtra, aplica o cooldown e conversa com o Gemini."""
     # 3. FILTRO
     if msg.author.bot:
         return  # ignora outros bots (e ele mesmo)
